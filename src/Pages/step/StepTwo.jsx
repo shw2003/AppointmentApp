@@ -1,53 +1,74 @@
-import React, { useState } from "react";
-
+import React, { useContext } from "react";
+import { Formik } from "formik";
+import { Button, InputNumber } from "antd";
+import { Input, Field, Option } from "formik-antd";
+import MultiStepFormContext from "../MultiStepFormContext";
 const StepTwo = () => {
-  const [age, setAge] = useState("");
-  const [city, setCity] = useState("");
-  const [campany, setCampany] = useState("");
+  const { address, setAddress, next, prev } = useContext(MultiStepFormContext);
   return (
-    <div>
-      <form>
-        <div className="row">
-          <div className="six columns">
-            <label>Age</label>
-            <input
-              className="u-full-width"
-              placeholder="age"
-              type="text"
-              autoFocus
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
+    <Formik
+      initialValues={address}
+      onSubmit={(values) => {
+        setAddress(values);
+        next();
+      }}
+      validate={(values) => {
+        const errors = {};
+        // if (!values.age) errors.age = "age is required";
+        if (!values.age) errors.age = "Age is required";
+        if (!values.campany) errors.campany = "Campany is required";
+        // if (values.age > 90) errors.age = "Are you sure you're human?";
+        if (!values.city) errors.city = "City is required";
+        return errors;
+      }}
+    >
+      {({ handleSubmit, errors }) => {
+        return (
+          <div className={"details__wrapper"}>
+            <div className={`form__item ${errors.age && "input__error"}`}>
+              <label>age *</label>
+              <Input name={"age"} />
+              <p className={"error__feedback"} style={{ color: "red" }}>
+                {errors.age}
+              </p>
+            </div>
+
+            <div className={`form__item ${errors.city && "input__error"}`}>
+              <label>City *</label>
+
+              <Field as="select" name={"city"}>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Bangalore">Bangalore</option>
+              </Field>
+            </div>
+            <div className={`form__item ${errors.campany && "input__error"}`}>
+              <label>Campany *</label>
+              <Input name={"campany"} />
+              <p className={"error__feedback"} style={{ color: "red" }}>
+                {errors.campany}
+              </p>
+            </div>
+            <div
+              className={
+                "form__item button__items d-flex justify-content-between"
+              }
+            >
+              <Button type={"default"} onClick={prev}>
+                Back
+              </Button>
+              <Button
+                type={"primary"}
+                onClick={handleSubmit}
+                style={{ backgroundColor: "black" }}
+              >
+                Next
+              </Button>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="six columns">
-            <label>City</label>
-            <input
-              className="u-full-width"
-              placeholder="city"
-              type="tel"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="six columns">
-            <label>Campany</label>
-            <input
-              className="u-full-width"
-              placeholder="campany"
-              type="text"
-              value={campany}
-              onChange={(e) => setCampany(e.target.value)}
-              autoFocus
-            />
-          </div>
-        </div>
-      </form>
-    </div>
+        );
+      }}
+    </Formik>
   );
 };
-
 export default StepTwo;

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import Picture from "../../../../src/assets/picture.png";
 import "./Banner.css";
-import MultiStep from "react-multistep";
 import Modal from "react-modal";
 import StepOne from "../../step/StepOne";
 import StepTwo from "../../step/StepTwo";
 import StepThree from "../../step/StepThree";
+import MultiStepForm from "../../mutilStepFrom/MultiStepForm";
 
 const Banner = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -61,7 +61,7 @@ const Banner = () => {
                 </button>
               </div>
 
-              <MultiStep steps={steps} style={{ fontSize: "20px" }} />
+              <MultiStepForm />
             </Modal>
           </div>
         </div>
