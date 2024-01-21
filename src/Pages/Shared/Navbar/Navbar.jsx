@@ -26,24 +26,6 @@ const Navbar = () => {
 
   const manuItems = (
     <React.Fragment>
-      {theme === "light" ? (
-        <button onClick={() => setTheme("black")}>
-          <img src="https://img.icons8.com/ios-filled/50/null/moon-symbol.png" />
-        </button>
-      ) : (
-        <>
-          <button onClick={() => setTheme("light")}>
-            <img src="https://img.icons8.com/ios/50/null/light-on--v1.png" />
-          </button>
-        </>
-      )}
-
-      {/* <DarkModeSwitch
-            style={{ marginBottom: '0px' }}
-            checked={isDarkMode}
-            onChange={toggleDarkMode}
-            size={50}
-        /> */}
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -56,6 +38,25 @@ const Navbar = () => {
       <li>
         <Link to="/blogs">Blogs</Link>
       </li>
+      {theme === "light" ? (
+        <button onClick={() => setTheme("black")}>
+          <img
+            src="https://img.icons8.com/ios-filled/50/null/moon-symbol.png"
+            height="30px"
+            width="30px"
+          />
+        </button>
+      ) : (
+        <>
+          <button onClick={() => setTheme("light")}>
+            <img
+              src="https://img.icons8.com/ios/50/null/light-on--v1.png"
+              height="30px"
+              width="30px"
+            />
+          </button>
+        </>
+      )}
     </React.Fragment>
   );
 
