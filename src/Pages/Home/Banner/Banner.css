@@ -1,0 +1,43 @@
+/* Banner.css */
+.modal {
+  height: 500px;
+  width: 500px;
+}
+
+.ReactModal__Content {
+  height: 500px;
+  width: 500px;
+  background-color: lightcyan !important;
+}
+
+.six {
+  font-size: 20px;
+  padding-bottom: 20px;
+}
+
+button {
+  font-size: 20px;
+}
+
+label {
+  padding-right: 20px;
+}
+
+button {
+  padding-right: 20px;
+}
+
+.react-multi-carousel-track {
+  column-gap: 20px;
+}
+
+.ReactModal__Overlay {
+  background-color: lightcyan;
+}
+
+.form {
+  font-size: 25px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+}

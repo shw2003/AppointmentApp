@@ -1,39 +1,73 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Picture from '../../../../src/assets/picture.png';
+import React, { useState } from "react";
+import Picture from "../../../../src/assets/picture.png";
+import "./Banner.css";
+import MultiStep from "react-multistep";
+import Modal from "react-modal";
+import StepOne from "../../step/StepOne";
+import StepTwo from "../../step/StepTwo";
+import StepThree from "../../step/StepThree";
 
 const Banner = () => {
-    return (
-        <div className="hero py-5">
-            <div className="hero-content flex-col lg:flex-row-reverse">
-                <img src={Picture} className="rounded-lg lg:w-1/2 md:w-full shadow-2xl" alt='' />
-                <div className='lg:px-5 md:px-5 text-justify'>
-                    <h1 className='font-bold'>Hello We Are</h1>
-                    <h1 className="text-4xl text-indigo-500 pt-1 font-bold pb-5">DocService.</h1>
-                    <p>You came to the right place. Get support for stress, family issues, life balance  from your home.</p>
-                    <p>Consulting a healthcare professional, buying medicine, ordering lab tests and improving your health and wellbeing, all can be done 24/7 with DocTime!</p>
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
-                    <div className='my-5 text-center font-bold flex gap-2'>
-                        <Link to='/login'>
-                            <button className="btn normal-case text-white hover:bg-indigo-600 bg-indigo-600 rounded-full">
-                                <span className='ml-2'>
-                                    Get Free Consolation
-                                </span>
-                            </button>
-                        </Link>
+  const steps = [
+    { name: "Name", component: <StepOne /> },
+    { name: "Email", component: <StepTwo /> },
+    { name: "Password", component: <StepThree /> },
+  ];
 
-                        <Link to='/services'>
-                            <button className="btn normal-case btn-outline text-primary hover:bg-indigo-600 rounded-full">
-                                <span className='ml-2'>
-                                    Book a Schedule
-                                </span>
-                            </button>
-                        </Link>
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="hero py-5">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <img
+          src={Picture}
+          className="rounded-lg lg:w-1/2 md:w-full shadow-2xl"
+          alt=""
+        />
+        <div className="lg:px-5 md:px-5 text-justify">
+          <h1 className="font-bold">Hello We Are</h1>
+          <h1 className="text-4xl text-cyan-500 pt-1 font-bold pb-5">
+            Fix Health
+          </h1>
+          <p>
+            Fix Health (YourPhysio previously) was started by Dr. Sheetal
+            Mundhada who's a renowned physiotherapist with 33+ years of
+            experience. The team has 60+ physiotherapists & has delivered
+            30,000+ online sessions with 96% patient satisfaction.
+          </p>
+
+          <div className="my-5 text-center font-bold flex gap-2">
+            <button
+              className="btn normal-case btn-outline text-cyan-500 hover:bg-cyan-600 rounded-full"
+              onClick={() => setIsOpen(true)}
+            >
+              <span className="ml-2">Book Now</span>
+            </button>
+          </div>
+
+          <div>
+            <Modal
+              isOpen={modalIsOpen}
+              onRequestClose={() => setIsOpen(false)}
+              style={{ fontSize: "20px" }}
+            >
+              <div className="form">
+                <h1>Form</h1>
+                <button
+                  style={{ float: "right", color: "red" }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  Close
+                </button>
+              </div>
+
+              <MultiStep steps={steps} style={{ fontSize: "20px" }} />
+            </Modal>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default Banner;
