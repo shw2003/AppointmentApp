@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 const StepTwo = () => {
+  const [age, setAge] = useState("");
+  const [city, setCity] = useState("");
+  const [campany, setCampany] = useState("");
   return (
     <div>
       <div className="row">
@@ -11,14 +14,21 @@ const StepTwo = () => {
             placeholder="age"
             type="text"
             autoFocus
-            value=""
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
           />
         </div>
       </div>
       <div className="row">
         <div className="six columns">
           <label>City</label>
-          <input className="u-full-width" placeholder="city" type="tel" />
+          <input
+            className="u-full-width"
+            placeholder="city"
+            type="tel"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
         </div>
       </div>
       <div className="row">
@@ -28,7 +38,8 @@ const StepTwo = () => {
             className="u-full-width"
             placeholder="campany"
             type="text"
-            value=""
+            value={campany}
+            onChange={(e) => setCampany(e.target.value)}
             autoFocus
           />
         </div>

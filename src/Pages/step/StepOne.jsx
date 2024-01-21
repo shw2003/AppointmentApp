@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const StepOne = () => {
+  const [firstName, setFirstName] = useState("");
+  const [phone, setPhone] = useState("");
   return (
     <div>
       <div className="row">
@@ -10,7 +12,8 @@ const StepOne = () => {
             className="u-full-width"
             placeholder="firstName"
             type="text"
-            value=""
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             autoFocus
           />
         </div>
@@ -20,9 +23,10 @@ const StepOne = () => {
           <label>Phone</label>
           <input
             className="u-full-width"
-            placeholder="lastName"
+            placeholder="phone"
             type="tel"
-            value=""
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
           />
         </div>
       </div>
